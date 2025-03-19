@@ -39,7 +39,7 @@ const usePatientForm = (initialData = {}) => {
         emergencyContactPhone: initialData.emergencyContactPhone || ''
       };
       
-      // Use a timeout to ensure the state update happens after the component has fully mounted
+      // Use a timeout to ensure the state update happens after the component has fully initialized
       setTimeout(() => {
         setFormData(formattedData);
         console.log('Form data initialized with timeout:', formattedData);
@@ -139,7 +139,6 @@ const usePatientForm = (initialData = {}) => {
         dateOfBirth: formData.dateOfBirth ? format(formData.dateOfBirth, 'yyyy-MM-dd') : null
       };
       
-      // Configure axios to use our custom header
       const config = {
         headers: {
           'X-Handle-Error-Locally': 'true'
