@@ -42,7 +42,6 @@ const PatientList = () => {
     const fetchPatients = async () => {
       setLoading(true);
       try {
-        // Add custom header to indicate we'll handle errors locally
         const res = await axios.get(`/api/patients?page=${page}&search=${search}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
@@ -52,7 +51,6 @@ const PatientList = () => {
         setTotalPages(res.data.totalPages);
         setTotalPatients(res.data.totalPatients);
       } catch (err) {
-        // More specific error handling
         if (err.response) {
           const errorMsg = err.response.data?.msg || 'Server returned an error';
           toast.error(`Failed to fetch patients: ${errorMsg}`);
@@ -67,7 +65,7 @@ const PatientList = () => {
       }
     };
 
-    // Debounce search to avoid too many requests
+    // add limit to avoid too many requests
     const timer = setTimeout(() => {
       fetchPatients();
     }, 300);
@@ -90,7 +88,6 @@ const PatientList = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this patient data?')) {
       try {
-        // Add custom header to indicate we'll handle errors locally
         await axios.delete(`/api/patients/${id}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
