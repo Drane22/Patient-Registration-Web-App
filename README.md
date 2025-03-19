@@ -10,7 +10,7 @@ A full-stack web application for managing patient information in healthcare faci
 - Patient check-in system
 - Soft delete functionality with restore option
 - Responsive Material-UI design
-- AES-256-CBC encryption for sensitive patient data with secure key management, ensuring HIPAA compliance
+- AES-256-CBC encryption for sensitive patient data with secure key management, ensuring data privacy & compliance
 
 ## Prerequisites
 
