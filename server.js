@@ -11,7 +11,7 @@ let db;
 // Function to initialize database
 async function initDB() {
   try {
-    db = await require('./models');
+    db = await require('./src/models');
     return db;
   } catch (err) {
     console.error('Failed to initialize database:', err);
@@ -25,8 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // API Routes
-app.use('/api/patients', require('./routes/patients'));
-app.use('/api/checkin', require('./routes/checkin'));
+app.use('/api/patients', require('./src/routes/patients'));
+app.use('/api/checkin', require('./src/routes/checkin'));
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, 'client/build')));
