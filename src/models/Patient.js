@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: null,
       allowNull: true,
     }
-    // Removed custom deletedAt field to avoid conflict with Sequelize's built-in paranoid deletion
+    
   }, {
     timestamps: true,
     paranoid: true, // This enables soft delete functionality with built-in deletedAt field
