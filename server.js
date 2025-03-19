@@ -2,13 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-// Initialize Express
 const app = express();
 
-// Initialize database and models
 let db;
 
-// Function to initialize database
 async function initDB() {
   try {
     db = await require('./src/models');
@@ -19,19 +16,15 @@ async function initDB() {
   }
 }
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// API Routes
 app.use('/api/patients', require('./src/routes/patients'));
 app.use('/api/checkin', require('./src/routes/checkin'));
 
-// Serve static assets
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
