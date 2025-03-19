@@ -12,7 +12,7 @@ const Dashboard = () => {
         Patient Registration System
       </Typography>
       <Typography variant="body1" color="text.secondary" paragraph>
-        A web application for managing patient information.
+        A web application for managing patient information. Built with React, Node.js, Express, and MySQL.
       </Typography>
 
       <Grid container spacing={4} sx={{ mt: 2 }}>
