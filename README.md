@@ -38,6 +38,8 @@ A full-stack web application for managing patient information in healthcare faci
    DB_HOST=localhost
    DB_PORT=3306
    PORT=5000
+   JWT_SECRET=your_jwt_secret_key
+   ENCRYPTION_KEY=your_32_byte_encryption_key
    ```
 
 ## Running the Application
