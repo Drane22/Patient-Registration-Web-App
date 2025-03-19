@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     dateOfBirth: {
       type: DataTypes.DATEONLY,
-      allowNull: true, // Temporarily allow null for migration
+      allowNull: true, 
     },
     gender: {
       type: DataTypes.ENUM('Male', 'Female', 'Other'),
