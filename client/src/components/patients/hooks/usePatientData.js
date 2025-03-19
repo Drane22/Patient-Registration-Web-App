@@ -10,13 +10,11 @@ const usePatientData = (patientId) => {
   useEffect(() => {
     const fetchPatient = async () => {
       try {
-        // Add custom header to indicate we'll handle errors locally
         const res = await axios.get(`/api/patients/${patientId}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
           }
         });
-        // Ensure date is properly parsed
         setPatient({
           ...res.data,
           dateOfBirth: res.data.dateOfBirth ? new Date(res.data.dateOfBirth) : null
@@ -24,7 +22,6 @@ const usePatientData = (patientId) => {
         setError(null);
       } catch (err) {
         console.error(err);
-        // Enhanced error handling with more specific messages
         if (err.response) {
           const statusCode = err.response.status;
           const errorMsg = err.response.data?.msg || 'Server returned an error';
