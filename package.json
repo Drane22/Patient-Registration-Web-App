@@ -1,7 +1,7 @@
 {
   "name": "patient-registration-app",
   "version": "1.0.0",
-  "description": "A modern patient registration system with MySQL database",
+  "description": "A web application for managing patient information. Built with React, Node.js, Express, and MySQL.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
