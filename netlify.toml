@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "16"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
