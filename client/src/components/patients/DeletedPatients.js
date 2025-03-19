@@ -37,7 +37,6 @@ const DeletedPatients = () => {
     const fetchDeletedPatients = async () => {
       setLoading(true);
       try {
-        // Add custom header to indicate we'll handle errors locally
         const res = await axios.get(`/api/patients/deleted/all?page=${page}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
@@ -47,7 +46,6 @@ const DeletedPatients = () => {
         setTotalPages(res.data.totalPages);
         setTotalPatients(res.data.totalPatients);
       } catch (err) {
-        // More specific error handling
         if (err.response) {
           const errorMsg = err.response.data?.msg || 'Server returned an error';
           toast.error(`Failed to fetch deleted patients: ${errorMsg}`);
@@ -70,7 +68,7 @@ const DeletedPatients = () => {
     setPage(value);
   };
 
-  // Handle patient restoration
+  // Handle patient data restoration
   const handleRestore = async (id) => {
     if (window.confirm('Are you sure you want to restore this patient data?')) {
       try {
