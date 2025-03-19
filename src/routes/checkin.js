@@ -54,7 +54,6 @@ router.put('/:id/reset', async (req, res) => {
       return res.status(404).json({ msg: 'Patient not found' });
     }
     
-    // Reset check-in time to null
     await patient.update({
       checkInTime: null
     });
