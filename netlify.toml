@@ -2,6 +2,7 @@
   base = "/"
   command = "npm run install-client && npm run build"
   publish = "client/build"
+   environment = { NETLIFY_NEXT_PLUGIN_SKIP = "true" }
 
 [build.environment]
   NODE_VERSION = "16"
