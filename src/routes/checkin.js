@@ -3,16 +3,12 @@ const router = express.Router();
 const db = require('../models');
 let Patient;
 
-// Initialize Patient model after database is ready
 db.then(models => {
   Patient = models.Patient;
 }).catch(err => {
   console.error('Failed to initialize Patient model:', err);
 });
 
-// @route   PUT api/checkin/:id
-// @desc    Check in a patient
-// @access  Public
 router.put('/:id', async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -38,9 +34,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// @route   PUT api/checkin/:id/reset
-// @desc    Reset a patient's check-in time
-// @access  Public
 router.put('/:id/reset', async (req, res) => {
   try {
     const patient = await Patient.findOne({
