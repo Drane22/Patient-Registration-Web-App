@@ -4,7 +4,6 @@ const { check, validationResult } = require('express-validator');
 const db = require('../models');
 let Patient;
 
-// Initialize Patient model after database is ready
 db.then(models => {
   Patient = models.Patient;
 }).catch(err => {
@@ -13,17 +12,13 @@ db.then(models => {
 
 const { Op } = require('sequelize');
 
-// @route   GET api/patients
-// @desc    Get all patients (with optional filtering)
-// @access  Public
 router.get('/', async (req, res) => {
   try {
     const { search, page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
     
-    // Build filter conditions
     const whereConditions = {
-      isDeleted: false // Only show non-deleted patients by default
+      isDeleted: false
     };
     
     // Add search functionality if search parameter is provided
@@ -36,7 +31,6 @@ router.get('/', async (req, res) => {
       ];
     }
     
-    // Get patients with pagination
     const { count, rows: patients } = await Patient.findAndCountAll({
       where: whereConditions,
       limit: parseInt(limit),
@@ -56,9 +50,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   GET api/patients/:id
-// @desc    Get patient by ID
-// @access  Public
+
 router.get('/:id', async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -79,9 +71,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// @route   POST api/patients
-// @desc    Register a new patient
-// @access  Public
+
 router.post(
   '/',
   [
