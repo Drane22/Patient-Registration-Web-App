@@ -1,0 +1,15 @@
+[build]
+  base = "/"
+  command = "npm run install-client && npm run build"
+  publish = "client/build"
+
+[build.environment]
+  NODE_VERSION = "16"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.processing]
+  skip_processing = false
