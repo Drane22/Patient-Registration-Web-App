@@ -27,7 +27,6 @@ const PatientDetails = () => {
   useEffect(() => {
     const fetchPatient = async () => {
       try {
-        // Add custom header to indicate we'll handle errors locally
         const res = await axios.get(`/api/patients/${id}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
@@ -37,7 +36,6 @@ const PatientDetails = () => {
         setError(null);
       } catch (err) {
         console.error(err);
-        // More specific error handling
         if (err.response) {
           const errorMsg = err.response.data?.msg || 'Server returned an error';
           setError(`Failed to fetch patient details: ${errorMsg}`);
@@ -60,7 +58,6 @@ const PatientDetails = () => {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this patient data?')) {
       try {
-        // Add custom header to indicate we'll handle errors locally
         await axios.delete(`/api/patients/${id}`, {
           headers: {
             'X-Handle-Error-Locally': 'true'
