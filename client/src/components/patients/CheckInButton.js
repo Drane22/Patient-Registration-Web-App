@@ -19,7 +19,6 @@ const CheckInButton = ({ patientId, onCheckInComplete }) => {
         
         toast.success('Patient checked in successfully');
         
-        // Call the callback function to update UI
         if (onCheckInComplete && typeof onCheckInComplete === 'function') {
           onCheckInComplete(res.data);
         }
