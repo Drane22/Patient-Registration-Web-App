@@ -113,9 +113,7 @@ router.post(
   }
 );
 
-// @route   PUT api/patients/:id
-// @desc    Update patient information
-// @access  Public
+
 router.put('/:id', [
   check('zipCode', 'Zip code must be exactly 4 digits').matches(/^\d{4}$/)
 ], async (req, res) => {
@@ -136,17 +134,14 @@ router.put('/:id', [
       return res.status(404).json({ msg: 'Patient not found' });
     }
     
-    // Merge existing data with updates
     const updatedData = {
       ...patient.get(),
       ...req.body
     };
-    delete updatedData.id; // Prevent id from being updated
+    delete updatedData.id; 
     
-    // Update patient with merged data
     await patient.update(updatedData);
     
-    // Get updated patient
     patient = await Patient.findByPk(req.params.id);
     
     res.json(patient);
@@ -156,9 +151,6 @@ router.put('/:id', [
   }
 });
 
-// @route   DELETE api/patients/:id
-// @desc    Soft delete a patient
-// @access  Public
 router.delete('/:id', async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -171,11 +163,8 @@ router.delete('/:id', async (req, res) => {
     if (!patient) {
       return res.status(404).json({ msg: 'Patient not found' });
     }
-    
-    // Use Sequelize's built-in paranoid deletion
+  
     await patient.destroy();
-    
-    // Also update our custom isDeleted flag
     await patient.update({
       isDeleted: true
     });
@@ -187,9 +176,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// @route   PUT api/patients/:id/restore
-// @desc    Restore a soft-deleted patient
-// @access  Public
+
 router.put('/:id/restore', async (req, res) => {
   try {
     // Find the deleted patient (paranoid: false to include soft-deleted records)
@@ -205,10 +192,7 @@ router.put('/:id/restore', async (req, res) => {
       return res.status(404).json({ msg: 'Deleted patient not found' });
     }
     
-    // Restore patient using Sequelize's built-in restore method
     await patient.restore();
-    
-    // Also update our custom isDeleted flag
     await patient.update({
       isDeleted: false
     });
@@ -220,15 +204,11 @@ router.put('/:id/restore', async (req, res) => {
   }
 });
 
-// @route   GET api/patients/deleted
-// @desc    Get all soft-deleted patients
-// @access  Public
 router.get('/deleted/all', async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
     
-    // Get deleted patients with pagination
     const { count, rows: patients } = await Patient.findAndCountAll({
       where: { isDeleted: true },
       limit: parseInt(limit),
@@ -249,9 +229,6 @@ router.get('/deleted/all', async (req, res) => {
   }
 });
 
-// @route   DELETE api/patients/:id/permanent
-// @desc    Permanently delete a patient
-// @access  Public
 router.delete('/:id/permanent', async (req, res) => {
   try {
     // Find the deleted patient (paranoid: false to include soft-deleted records)
