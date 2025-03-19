@@ -138,7 +138,6 @@ const PatientForm = () => {
         dateOfBirth: formData.dateOfBirth ? format(formData.dateOfBirth, 'yyyy-MM-dd') : null
       };
       
-      // Add custom header to indicate we'll handle errors locally
       const config = {
         headers: {
           'X-Handle-Error-Locally': 'true',
@@ -162,7 +161,6 @@ const PatientForm = () => {
       if (err.response?.data?.msg) {
         toast.error(err.response.data.msg);
       } else if (err.response?.data?.errors) {
-        // Handle validation errors from server
         const serverErrors = {};
         err.response.data.errors.forEach(error => {
           serverErrors[error.param] = error.msg;
