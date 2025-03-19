@@ -10,6 +10,7 @@ A full-stack web application for managing patient information in healthcare faci
 - Patient check-in system
 - Soft delete functionality with restore option
 - Responsive Material-UI design
+- AES-256-CBC encryption for sensitive patient data with secure key management, ensuring HIPAA compliance
 
 ## Prerequisites
 
@@ -58,15 +59,3 @@ A full-stack web application for managing patient information in healthcare faci
 - `/models` - Sequelize models for MySQL database
 - `/routes` - Express route handlers
 - `/utils` - Utility functions
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
