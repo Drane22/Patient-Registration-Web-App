@@ -2,8 +2,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 // Create axios defaults
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || '';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || '/api';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.timeout = 10000; // Set timeout to 10 seconds
 
 // Add a request interceptor
 axios.interceptors.request.use(
